@@ -4,22 +4,25 @@ namespace Breakout.Assets.Scripts.Controller
 {
     public class BallController : MonoBehaviour
     {
+        // Constant declaration.
+        public const string BALL_NAME = "Ball";
+
+        // Local constants
+        private const float throwPositionY = -2f;
+
         // Attribute declaration
         private GameController gameController;
         private Rigidbody2D ballRigidBody;
-        private Vector2 initialVelocity;
         private int hitCount = 0;
 
         // Public variables declaration.
         public float speed;
 
         // Use this for initialization
-        void Start()
+        void Awake()
         {
             gameController = GameObject.Find(GameController.GAME_CONTROLLER_NAME).GetComponent<GameController>();
             ballRigidBody = GetComponent<Rigidbody2D>();
-            initialVelocity = new Vector2(0, -1.0f) * speed;
-            ballRigidBody.velocity = initialVelocity;
         }
 
         void OnCollisionEnter2D(Collision2D collision)
@@ -31,12 +34,31 @@ namespace Breakout.Assets.Scripts.Controller
                 gameController.IncreaseAndShowScore(collisionObject.GetComponent<BrickController>().pointsWorth);
                 Destroy(collision.gameObject);
             }
+            else if (collisionObject.tag == PaddleController.PADDLE_NAME)
+            {
+                ballRigidBody.velocity = new Vector2(CalculateVelocityX(collision), 1.0f) * speed;
+            }
         }
 
-        // Update is called once per frame
-        void FixedUpdate()
+        float CalculateVelocityX(Collision2D collision)
         {
-            ballRigidBody.velocity = ballRigidBody.velocity.normalized * speed;
+            return (ballRigidBody.position.x - collision.transform.position.x) / collision.collider.bounds.size.x;
+        }
+
+        public void ResetPosition(float positionX)
+        {
+            ballRigidBody.velocity = new Vector2(0, 0);
+            transform.SetPositionAndRotation(new Vector3(positionX, throwPositionY, 0), new Quaternion());
+        }
+
+        public void Throw(float positionX)
+        {
+            ballRigidBody.velocity = new Vector2(0, -1.0f) * speed;
+        }
+
+        public float GetPositionY()
+        {
+            return transform.position.y;
         }
     }
 }

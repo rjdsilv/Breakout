@@ -10,6 +10,9 @@ namespace Breakout.Assets.Scripts.Controller
      */
     public class PaddleController : MonoBehaviour
     {
+        // Constant declaration.
+        public const string PADDLE_NAME = "Paddle";
+
         // Attribute declaration
         private Rigidbody2D paddleRigidBody;
 
@@ -28,6 +31,16 @@ namespace Breakout.Assets.Scripts.Controller
             float horizontal = Input.GetAxis("Horizontal");
             Vector2 horizontalMovement = new Vector2(horizontal, 0);
             paddleRigidBody.velocity = horizontalMovement * speed;
+        }
+
+        public float GetPositionY()
+        {
+            return transform.position.y;
+        }
+
+        public float GetPositionX()
+        {
+            return transform.position.x;
         }
     }
 }
