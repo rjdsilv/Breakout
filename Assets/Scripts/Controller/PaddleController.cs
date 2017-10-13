@@ -16,7 +16,7 @@ namespace Breakout.Assets.Scripts.Controller
 
         // Public variables declaration to be on Inspector
         public float speed = 0.0f;
-        public BoundaryManager boundary;
+        public BoundaryManager boundaryManager = new BoundaryManager();
 
         // Use this for initialization
         void Start()
@@ -30,7 +30,6 @@ namespace Breakout.Assets.Scripts.Controller
             float horizontal = Input.GetAxis("Horizontal");
             Vector2 horizontalMovement = new Vector2(horizontal, 0);
             paddleRigidBody.velocity = horizontalMovement * speed;
-            paddleRigidBody.position = new Vector2(Mathf.Clamp(paddleRigidBody.position.x, boundary.xMin, boundary.xMax), paddleRigidBody.position.y);
         }
     }
 }

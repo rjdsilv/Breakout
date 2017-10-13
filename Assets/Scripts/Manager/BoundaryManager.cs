@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Breakout.Assets.Scripts.Manager
 {
     [Serializable]
-    public class BoundaryManager : MonoBehaviour
+    public class BoundaryManager
     {
         public float xMin;
         public float xMax;
