@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Breakout.Assets.Scripts.Manager;
 
 namespace Breakout.Assets.Scripts.Controller
 {
@@ -16,7 +15,6 @@ namespace Breakout.Assets.Scripts.Controller
 
         // Public variables declaration to be on Inspector
         public float speed = 0.0f;
-        public BoundaryManager boundaryManager = new BoundaryManager();
 
         // Use this for initialization
         void Start()

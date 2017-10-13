@@ -23,6 +23,10 @@ namespace Breakout.Assets.Scripts.Controller
 
         void OnCollisionEnter2D(Collision2D collision)
         {
+            if (collision.gameObject.tag == BrickController.BRICK_TAG)
+            {
+                Destroy(collision.gameObject);
+            }
             //ContactPoint2D contactPoint2D = collision.contacts[0];
             //Vector2 ballPosition2D = new Vector2(transform.position.x, transform.position.y);
             //Vector2 ballDirection2D = (contactPoint2D.point - ballPosition2D).normalized;
