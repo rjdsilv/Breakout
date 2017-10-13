@@ -1,14 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Breakout.Assets.Scripts.Controller
 {
     public class BallController : MonoBehaviour
     {
         // Attribute declaration
+        private GameController gameController;
         private Rigidbody2D ballRigidBody;
         private Vector2 initialVelocity;
+        private int hitCount = 0;
 
         // Public variables declaration.
         public float speed;
@@ -16,6 +16,7 @@ namespace Breakout.Assets.Scripts.Controller
         // Use this for initialization
         void Start()
         {
+            gameController = GameObject.Find(GameController.GAME_CONTROLLER_NAME).GetComponent<GameController>();
             ballRigidBody = GetComponent<Rigidbody2D>();
             initialVelocity = new Vector2(0, -1.0f) * speed;
             ballRigidBody.velocity = initialVelocity;
@@ -23,16 +24,13 @@ namespace Breakout.Assets.Scripts.Controller
 
         void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.gameObject.tag == BrickController.BRICK_TAG)
+            GameObject collisionObject = collision.gameObject;
+            if (collisionObject.tag == BrickController.BRICK_TAG)
             {
+                hitCount++;
+                gameController.IncreaseAndShowScore(collisionObject.GetComponent<BrickController>().pointsWorth);
                 Destroy(collision.gameObject);
             }
-            //ContactPoint2D contactPoint2D = collision.contacts[0];
-            //Vector2 ballPosition2D = new Vector2(transform.position.x, transform.position.y);
-            //Vector2 ballDirection2D = (contactPoint2D.point - ballPosition2D).normalized;
-            //RaycastHit2D hitRay = Physics2D.Raycast(ballPosition2D, ballDirection2D);
-            //Vector2 ballReflectionDirection2D = Vector2.Reflect(ballDirection2D, hitRay.normal);
-            //ballRigidBody.velocity = ballReflectionDirection2D * speed;
         }
 
         // Update is called once per frame

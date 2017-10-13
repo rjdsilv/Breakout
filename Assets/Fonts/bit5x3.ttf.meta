@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 497f23dc21965c84cb39dbcd59bbb20e
+timeCreated: 1507858912
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Bit5x3
+  fontNames:
+  - Bit5x3
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
