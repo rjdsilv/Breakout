@@ -33,11 +33,21 @@ namespace Breakout.Assets.Scripts.Controller
             paddleRigidBody.velocity = horizontalMovement * speed;
         }
 
+        /**
+         * Method     : GetPositionY
+         * Return     : The paddle's position on Y axis.
+         * Description: This method get the paddle's position on Y axis ans return it.
+         */
         public float GetPositionY()
         {
             return transform.position.y;
         }
 
+        /**
+         * Method     : GetPositionX
+         * Return     : The paddle's position on X axis.
+         * Description: This method get the paddle's position on X axis ans return it.
+         */
         public float GetPositionX()
         {
             return transform.position.x;
