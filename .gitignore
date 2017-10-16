@@ -4,6 +4,7 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Dd]ocuments/
+/[Bb]reakout_[Dd]ata/
 /Assets/AssetStoreTools*
 
 # Visual Studio 2015 cache directory
@@ -33,4 +34,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+*.exe
 

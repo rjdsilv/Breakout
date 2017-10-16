@@ -135,7 +135,7 @@ namespace Breakout.Assets.Scripts.Controller
          */
         void DisplayGameOverText()
         {
-            scoreAndLivesText.text = GetScoreAndLivesText() + "\n\n\n\n\n\n" + gameOverText;
+            scoreAndLivesText.text = GetScoreAndLivesText() + "\n\n\n\n\n\n\n" + gameOverText;
         }
 
         /**
@@ -145,7 +145,7 @@ namespace Breakout.Assets.Scripts.Controller
          */
         string GetScoreAndLivesText()
         {
-            return lives.ToString() + "                       " + score.ToString().PadLeft(3, '0');
+            return lives.ToString() + "                             " + score.ToString().PadLeft(3, '0');
         }
 
         /**

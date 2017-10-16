@@ -7155,7 +7155,7 @@ GUIText:
   m_TabSize: 4
   m_Font: {fileID: 12800000, guid: 497f23dc21965c84cb39dbcd59bbb20e, type: 3}
   m_Material: {fileID: 0}
-  m_FontSize: 50
+  m_FontSize: 60
   m_FontStyle: 1
   m_Color:
     serializedVersion: 2
@@ -7173,7 +7173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88053aebd00a22a45bc7e454fe967a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 2
+  lives: 5
   waitForRethrow: 1
 --- !u!4 &1254787272
 Transform:
@@ -11775,7 +11775,7 @@ Transform:
   m_GameObject: {fileID: 1916224076}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 5.02, z: 0}
-  m_LocalScale: {x: 0.5, y: 1.3, z: 1}
+  m_LocalScale: {x: 0.5020711, y: 1.3053852, z: 1.0041425}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
