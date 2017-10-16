@@ -85,7 +85,6 @@ namespace Breakout.Assets.Scripts.Controller
             {
                 speed = Mathf.Clamp(speed + 1, startSpeed, maxSpeed);
             }
-            Debug.Log("Name: " + brickName + " - Hit Count: " + hitCount  + " - Speed: " + speed);
         }
 
         /**
