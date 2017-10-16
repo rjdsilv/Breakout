@@ -41,7 +41,7 @@ namespace Breakout.Assets.Scripts.Controller
             if (collisionObject.tag == BrickController.BRICK_TAG)
             {
                 hitCount++;
-                gameController.IncreaseAndShowScore(collisionObject.GetComponent<BrickController>().pointsWorth);
+                gameController.IncreaseScoreAndBlocksDestroyed(collisionObject.GetComponent<BrickController>().pointsWorth);
                 Destroy(collision.gameObject);
             }
             // Collided with the paddle.

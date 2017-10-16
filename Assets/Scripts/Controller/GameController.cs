@@ -17,26 +17,31 @@ namespace Breakout.Assets.Scripts.Controller
 
         // Attribute declaration
         private int score = 0;
-        private GUIText scoreText;
+        private int blocksDestroyed = 0;
+        private int currentLevel = 1;
+        private int[] blocksPerLevel = { 112 };
+        private string gameOverText = "";
+        private GUIText scoreAndLivesText;
         private BallController ballControler;
         private PaddleController paddleController;
-        private Vector3 scorePosition = new Vector3(0.8f, 0.9f, 1.0f);
+        private Vector3 scorePosition = new Vector3(0.20f, 0.9f, 1.0f);
 
         // Control attributes declaration.
         private bool throwBall = false;
 
         // Public variabales for the inspector.
+        public int lives = 0;
         public float waitForRethrow = 0.0f;
         
         // Use this for initialization
         void Start()
         {
             // Start up the components.
-            scoreText = GetComponent<GUIText>();
+            scoreAndLivesText = GetComponent<GUIText>();
             ballControler = GameObject.Find(BallController.BALL_NAME).GetComponent<BallController>();
             paddleController = GameObject.Find(PaddleController.PADDLE_NAME).GetComponent<PaddleController>();
-            scoreText.text = score.ToString().PadLeft(3, '0');
-            scoreText.transform.SetPositionAndRotation(scorePosition, new Quaternion());
+            scoreAndLivesText.text = GetScoreAndLivesText();
+            scoreAndLivesText.transform.SetPositionAndRotation(scorePosition, new Quaternion());
 
             // Throws the ball at the start
             ballControler.Throw(paddleController.GetPositionX());
@@ -45,18 +50,27 @@ namespace Breakout.Assets.Scripts.Controller
         // FixedUpdate is like update but for using wigh physics.
         void FixedUpdate()
         {
-            // Lost the ball. Reposition it and wait
-            if (BallLost())
+            if (!IsGameOver())
             {
-                ballControler.ResetPosition(paddleController.GetPositionX());
-                StartCoroutine(WaitResetAfterLooseBall());
-            }
+                // Lost the ball. Reposition it and wait
+                if (BallLost())
+                {
+                    ballControler.ResetPosition(paddleController.GetPositionX());
+                    StartCoroutine(WaitResetAfterLooseBall());
+                }
 
-            // Throw the ball after waiting for some seconds.
-            if (throwBall)
+                // Throw the ball after waiting for some seconds.
+                if (throwBall)
+                {
+                    ballControler.Throw(paddleController.GetPositionX());
+                    throwBall = false;
+                }
+
+                scoreAndLivesText.text = GetScoreAndLivesText();
+            }
+            else
             {
-                ballControler.Throw(paddleController.GetPositionX());
-                throwBall = false;
+                DisplayGameOverText();
             }
         }
 
@@ -80,18 +94,70 @@ namespace Breakout.Assets.Scripts.Controller
          */
         bool BallLost()
         {
-            return ballControler.GetPositionY() <= paddleController.GetPositionY();
+            if (ballControler.GetPositionY() <= paddleController.GetPositionY())
+            {
+                lives--;
+                return true;
+            }
+
+            return false;
         }
 
         /**
-         * Method     : IncreaseAndShowScore
-         * Param      : pointsWorth - The number of points earned when a brick is destroyed.
-         * Description: This method will increase the score by the number of points received and show it.
+         * Method     : IsGameOver
+         * Return     : <b>True</b> if either the left or the right paddle has achieved the win condition. <b>False</b> otherwise
+         * Description: This method will check if any of the paddles has achieved the win condition and return accordingly.
          */
-        public void IncreaseAndShowScore(int pointsWorth)
+        bool IsGameOver()
         {
+            bool isGameOver = false;
+
+            if (blocksDestroyed >= blocksPerLevel[currentLevel - 1] || lives <= 0)
+            {
+                if (blocksDestroyed >= blocksPerLevel[currentLevel - 1])
+                {
+                    gameOverText = "YOU WON!\n\nSCORE: " + score;
+                }
+                else if (lives <= 0)
+                {
+                    gameOverText = "GAME OVER!\n\nSCORE: " + score;
+                }
+
+                isGameOver = true;
+            }
+
+            return isGameOver;
+        }
+
+        /**
+         * Method     : DisplayGameOverText
+         * Description: Displays to the player the game over text depending on the winnig or the lose in the game.
+         */
+        void DisplayGameOverText()
+        {
+            scoreAndLivesText.text = GetScoreAndLivesText() + "\n\n\n\n\n\n" + gameOverText;
+        }
+
+        /**
+         * Method     : GetScoreAndLivesText
+         * Return     : The updated score and lives text
+         * Description: This method update the text the the number of lives and the score for the player.
+         */
+        string GetScoreAndLivesText()
+        {
+            return lives.ToString() + "                       " + score.ToString().PadLeft(3, '0');
+        }
+
+        /**
+         * Method     : IncreaseScoreAndBlocksDestroyed
+         * Param      : pointsWorth - The number of points earned when a brick is destroyed.
+         * Description: This method will increase the the number of bricks destroyed by one and the score by the number
+         *              of points received and show it.
+         */
+        public void IncreaseScoreAndBlocksDestroyed(int pointsWorth)
+        {
+            blocksDestroyed++;
             score += pointsWorth;
-            scoreText.text = score.ToString().PadLeft(3, '0');
         }
     }
 }

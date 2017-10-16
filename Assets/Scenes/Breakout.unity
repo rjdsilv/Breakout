@@ -7147,8 +7147,8 @@ GUIText:
   m_GameObject: {fileID: 1254787269}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: 000
-  m_Anchor: 4
+  m_Text: 
+  m_Anchor: 0
   m_Alignment: 1
   m_PixelOffset: {x: 0, y: 0}
   m_LineSpacing: 1
@@ -7173,6 +7173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88053aebd00a22a45bc7e454fe967a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lives: 2
   waitForRethrow: 1
 --- !u!4 &1254787272
 Transform:
