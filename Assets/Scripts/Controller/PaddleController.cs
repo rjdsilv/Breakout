@@ -33,6 +33,15 @@ namespace Breakout.Assets.Scripts.Controller
             paddleRigidBody.velocity = horizontalMovement * speed;
         }
 
+        // Detects game object collision.
+        void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.collider.tag == "Ball")
+            {
+                GetComponent<AudioSource>().Play();
+            }
+        }
+
         /**
          * Method     : GetPositionY
          * Return     : The paddle's position on Y axis.

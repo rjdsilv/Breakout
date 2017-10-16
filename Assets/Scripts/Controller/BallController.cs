@@ -41,6 +41,7 @@ namespace Breakout.Assets.Scripts.Controller
             if (collisionObject.tag == BrickController.BRICK_TAG)
             {
                 hitCount++;
+                GetComponent<AudioSource>().Play();
                 gameController.IncreaseScoreAndBlocksDestroyed(collisionObject.GetComponent<BrickController>().pointsWorth);
                 Destroy(collision.gameObject);
             }
