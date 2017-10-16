@@ -8347,7 +8347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  maxSpeed: 15
+  maxSpeed: 10
 --- !u!82 &1337024330
 AudioSource:
   m_ObjectHideFlags: 0
