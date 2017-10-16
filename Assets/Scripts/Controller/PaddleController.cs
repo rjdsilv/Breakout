@@ -14,7 +14,9 @@ namespace Breakout.Assets.Scripts.Controller
         public const string PADDLE_NAME = "Paddle";
 
         // Attribute declaration
+        private bool shrinked = false;
         private Rigidbody2D paddleRigidBody;
+        private Vector3 shrinkFactor = new Vector3(0.625f, 0, 0);
 
         // Public variables declaration to be on Inspector
         public float speed = 0.0f;
@@ -60,6 +62,32 @@ namespace Breakout.Assets.Scripts.Controller
         public float GetPositionX()
         {
             return transform.position.x;
+        }
+
+        /**
+         * Method     : Shrink
+         * Description: This method shrinks the paddle.
+         */
+        public void Shrink()
+        {
+            if (!shrinked)
+            {
+                transform.localScale -= shrinkFactor;
+                shrinked = true;
+            }
+        }
+
+        /**
+         * Method     : ResetSize
+         * Description: Resets the paddle size.
+         */
+        public void ResetSize()
+        {
+            if (shrinked)
+            {
+                transform.localScale += shrinkFactor;
+                shrinked = false;
+            }
         }
     }
 }

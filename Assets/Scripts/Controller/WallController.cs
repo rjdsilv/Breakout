@@ -10,6 +10,9 @@ namespace Breakout.Assets.Scripts.Controller
      */
     public class WallController : MonoBehaviour
     {
+        // Public constants.
+        public const string UP_WALL_NAME = "UpWall";
+
         // Detects game object collision.
         void OnCollisionEnter2D(Collision2D collision)
         {

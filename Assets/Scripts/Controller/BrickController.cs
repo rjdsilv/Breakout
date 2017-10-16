@@ -12,6 +12,8 @@ namespace Breakout.Assets.Scripts.Controller
     {
         // Constant declaration.
         public const string BRICK_TAG = "Brick";
+        public const string ORANGE_BRICK_PREFIX = "OrangeBrick";
+        public const string RED_BRICK_PREFIX = "RedBrick";
 
         // Public variables declaration.
         public int pointsWorth = 0;

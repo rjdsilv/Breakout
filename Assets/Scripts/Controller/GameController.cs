@@ -55,7 +55,8 @@ namespace Breakout.Assets.Scripts.Controller
                 // Lost the ball. Reposition it and wait
                 if (BallLost())
                 {
-                    ballControler.ResetPosition(paddleController.GetPositionX());
+                    ballControler.ResetSpeedHitCountAndPosition(paddleController.GetPositionX());
+                    paddleController.ResetSize();
                     StartCoroutine(WaitResetAfterLooseBall());
                 }
 
@@ -158,6 +159,15 @@ namespace Breakout.Assets.Scripts.Controller
         {
             blocksDestroyed++;
             score += pointsWorth;
+        }
+
+        /**
+         * Method     : ShrinkPaddle
+         * Description: Shrinks the paddle size.
+         */
+        public void ShrinkPaddle()
+        {
+            paddleController.Shrink();
         }
     }
 }

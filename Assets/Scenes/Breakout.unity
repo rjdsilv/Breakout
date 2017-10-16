@@ -7440,7 +7440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88053aebd00a22a45bc7e454fe967a82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 5
+  lives: 3
   waitForRethrow: 1
 --- !u!4 &1254787272
 Transform:
@@ -8235,9 +8235,9 @@ GameObject:
   - component: {fileID: 1337024327}
   - component: {fileID: 1337024326}
   - component: {fileID: 1337024328}
-  - component: {fileID: 1337024329}
   - component: {fileID: 1337024325}
   - component: {fileID: 1337024330}
+  - component: {fileID: 1337024329}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Ball
@@ -8346,7 +8346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed66f02008991d46b3769407101448f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  speed: 4
+  maxSpeed: 15
 --- !u!82 &1337024330
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12032,7 +12033,7 @@ GameObject:
   - component: {fileID: 1916224081}
   m_Layer: 0
   m_Name: UpWall
-  m_TagString: Untagged
+  m_TagString: UpWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
